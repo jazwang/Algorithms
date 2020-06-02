@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class Search {
 
     public static void main(String[] args)
@@ -7,13 +10,57 @@ public class Search {
         System.out.println(binarySearch(arr, 11)); //doesnt exist
     }
 
-    static void BFS()
-    {
+    // Graph Search
 
+    /*
+        Breadth-first Search (Level-order Traversal)
+
+        Used for finding shortest path between two nodes
+        *** Is NOT recursive
+        uses a queue
+     */
+    static void BFS(Tree.TreeNode root)
+    {
+        Deque<Tree.TreeNode> queue = new ArrayDeque<>();
+
+        if (root == null)
+        {
+            return;
+        }
+
+        root.visited = true;
+        queue.add(root);
+
+        while (!queue.isEmpty())
+        {
+            Tree.TreeNode curr = queue.pop();
+            for (Tree.TreeNode neighbor : curr.neighbors)
+            {
+                if (!neighbor.visited)
+                {
+                    neighbor.visited = true;
+                    queue.add(neighbor);
+                }
+            }
+        }
     }
 
-    static void DFS(){
-
+    /*
+        Depth-first Search
+     */
+    static void DFS(Tree.TreeNode root){
+        if (root == null)
+        {
+            return;
+        }
+        root.visited = true;
+        for (Tree.TreeNode neighbor: root.neighbors)
+        {
+            if (!neighbor.visited)
+            {
+                DFS(neighbor);
+            }
+        }
     }
 
     /*
