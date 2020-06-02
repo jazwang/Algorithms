@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class Sort {
@@ -8,8 +9,8 @@ public class Sort {
         printArray(arr);
 
 //        mergeSort(arr);
-        quickSort(arr);
-
+//        quickSort(arr);
+        radixSort(arr);
         printArray(arr);
     }
 
@@ -146,5 +147,67 @@ public class Sort {
         int temp = arr[left];
         arr[left] = arr[right];
         arr[right] = temp;
+    }
+
+
+    /*
+        - Radix Sort -
+        takes advantage of integers having a finite number of bits
+        sort from least significant (right-most)
+        to most significant (left-most) digit
+        uses countSort()
+
+        Runtime: O(kn) [ k is the number of passes ]
+     */
+    static void radixSort(int[] arr)
+    {
+        int max = getMax(arr);
+
+        for (int exp = 1; max/exp>0; exp *=10)
+        {
+            countSort(arr, exp);
+        }
+    }
+
+    static void countSort(int[] arr, int exp)
+    {
+        int[] result = new int[arr.length];
+        int[] count = new int[10];
+        Arrays.fill(count, 0);
+
+        for (int i = 0; i < arr.length; i ++)
+        {
+            count[(arr[i]/exp)%10] ++;
+        }
+
+        for (int i = 1; i < 10; i ++)
+        {
+            count[i] += count[i -1];
+        }
+
+        // Build the result array
+        for (int i = arr.length - 1; i >= 0; i--)
+        {
+            result[count[ (arr[i]/exp)%10 ] - 1] = arr[i];
+            count[ (arr[i]/exp)%10 ]--;
+        }
+
+        // Copy the result array to arr[], so that arr[] now
+        // contains sorted numbers according to curent digit
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = result[i];
+    }
+
+    static int getMax(int[] arr)
+    {
+        int max = arr[0];
+        for (int i : arr)
+        {
+            if(i > max)
+            {
+                max = i;
+            }
+        }
+        return max;
     }
 }
