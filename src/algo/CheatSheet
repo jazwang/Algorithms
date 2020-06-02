@@ -1,0 +1,26 @@
+Array/ArrayList:
+
+
+Hash Tables:
+
+Trees:
+
+Graphs:
+
+Stacks/Queues:
+
+Heaps:
+    Min-heap: (Priority Queue)
+        A complete binary tree. (* Complete binary tree: completely filled other than the rightmost
+        elements on the last level)
+        The root being the minimum in the tree. (Max-heap opposite)
+
+        - Insert:
+            Insert at bottom rightmost spot.
+            Swap till min at root.
+            Runtime: O(logn)
+        - Remove Min:
+            Extract root.
+            Replace root with bottom rightmost node.
+            Bubble down and swap till min at root.
+            Runtime: O(logn)
