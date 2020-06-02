@@ -7,8 +7,8 @@ public class Sort {
         int[] arr = { 38, 27, 43, 3, 9 ,82, 10};
         printArray(arr);
 
-        mergeSort(arr);
-
+//        mergeSort(arr);
+        quickSort(arr);
 
         printArray(arr);
     }
@@ -88,8 +88,63 @@ public class Sort {
 
     }
 
-    static int[] quickSort(int[] list)
+    /*
+        - Quick Sort -
+        Pick a random element and partition the arr
+        all nums less than this elem coms before it
+        all nums greater than this elem come after it
+        swapping technique
+
+        Runtime: O(nlogn) average; O(n^2) worst
+        Memory: O(logn)
+     */
+    static void quickSort(int[] arr)
     {
-        return null;
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    static void quickSort(int[] arr, int left, int right)
+    {
+        int index = partition(arr, left, right);
+        if (left < index - 1)
+        {
+            quickSort(arr, left, index -1);
+        }
+        if (index < right)
+        {
+            quickSort(arr, index, right);
+        }
+    }
+
+    static int partition(int[] arr, int left, int right)
+    {
+        int pivot = arr[(left + right)/2];
+        while (left <= right)
+        {
+            while (arr[left] < pivot) //move left inwards till finds an elem >= pivot
+            {
+                left ++;
+            }
+
+            while(arr[right] > pivot) //move right inwards till finds an elem <= pivot
+            {
+                right --;
+            }
+
+            if (left <= right) // dont swap if left > right
+            {
+                swap(arr, left, right);
+                left ++;
+                right --;
+            }
+        }
+        return left; //partition point for dividing arr into halves
+    }
+
+    static void swap(int[] arr, int left, int right)
+    {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
     }
 }
