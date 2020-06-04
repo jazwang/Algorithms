@@ -1,13 +1,53 @@
 Array/ArrayList:
+    - insert:
+        usually O(1), unless needs to resize then O(n)
+
+StringBuilder:
+    - concatenating:
+        - if using String, -> O(x + 2x + ... + nx) = O(xn^2)
+        because creating a new string every time adding new ones
+        - StringBuilder solves this by creating a resizing array for all string
+
 
 
 Hash Tables:
+    ** quick lookup!
+    array of linked list
+    - insert:
+        - compute the key's hash code (int or long)
+        - map the hash code to an index in the array (e.g. code % array_length)
+        - at this index, will be a linked list (collision purpose)
+    - get:
+        - compute key's hash code
+        - go to its index
+        - find in its linked list
+    If hash code func good, lookup should be O(1)
+    Else, O(N) - N = number of keys
+
+
+    - Collision:
+        - Chaining with linked lists ^
+        - chaining with BST -> worst lookup to O(logn)
+        - if its just an array, linear probing -> move till find empty spot
+        - quadratic probing and double hashing
 
 Trees:
 
 Graphs:
 
-Stacks/Queues:
+Stacks:
+    - LIFO
+    - pop: O(1)
+    - push: O(1)
+    - peek: O(1)
+    - isEmpty: O(1)
+
+Queue:
+    -LILO
+    - add: O(1)
+    - remove: O(1)
+    - peek: O(1)
+    - isEmpty: O(1)
 
 Heaps:
     Min-heap: (Priority Queue)
