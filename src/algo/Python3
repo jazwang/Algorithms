@@ -1,0 +1,23 @@
+To count the elements in a list and create a map:
+
+Counter(list)
+
+to get the kth most frequent element:
+heapq.nlargest(k, map.keys(), key=count.get)
+
+list of string to string:
+"".join(list)
+
+remove leading chars:
+string.lstrip(char)
+
+create a min heap:
+heap = []
+heapq.heapify(heap)
+
+pop():
+heapq.heappop(heap)
+
+push():
+heapq.heappush(heap, item)
+
